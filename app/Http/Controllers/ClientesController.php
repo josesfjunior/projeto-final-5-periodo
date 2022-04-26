@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class ClientesController extends Controller
 {
     public function listarClientes(){
-        echo "Listando Clientes";
+        return view('/Clientes/cadastro');
     }
 
     public function listarCliente($id){
