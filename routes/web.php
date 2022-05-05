@@ -35,3 +35,7 @@ Route::group(['prefix' => '/funcionarios'], function () {
     Route::put('/{id}', 'App\Http\Controllers\FuncionariosController@alterarFuncionario')->name("alterarFuncionario");
     Route::delete('/{id}', 'App\Http\Controllers\FuncionariosController@deletarFuncionario')->name("deletarFuncionario");
 });
+
+Route::get("/dashboard", function (){
+    return view('/Dashboard/dashboard');
+});
