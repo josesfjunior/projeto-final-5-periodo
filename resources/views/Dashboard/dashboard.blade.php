@@ -54,26 +54,25 @@
             <li tabindex="0">
                 <span class="ml-auto mr-auto">Cliente</span>
                 <ul class="rounded-box bg-base-100 p-2">
-                    <li><a>Cadastrar</a></li>
-                    <li><a>Gerenciar</a></li>
-                    <li><a>Agendar</a></li>
+                    <li class="hover-bordered"><a>Cadastrar</a></li>
+                    <li class="hover-bordered"><a>Gerenciar</a></li>
+                    <li class="hover-bordered"><a>Agendar</a></li>
                 </ul>
             </li>
             <!-- tabindex will make the parent menu focusable to keep the submenu open if it's focused -->
             <li tabindex="1">
                 <span class="ml-auto mr-auto">Funcionário</span>
                 <ul class="rounded-box bg-base-100 p-2">
-                    <li><a>Cadastrar</a></li>
-                    <li><a>Gerenciar</a></li>
-                    <li><a></a></li>
+                    <li class="hover-bordered"><a>Cadastrar</a></li>
+                    <li class="hover-bordered"><a>Gerenciar</a></li>
                 </ul>
             </li>
             <li><li tabindex="2">
                 <span class="ml-auto mr-auto">Produtos</span>
                 <ul class="rounded-box bg-base-100 p-2">
-                    <li><a>Cadastrar</a></li>
-                    <li><a>Gerenciar</a></li>
-                    <li><a>Listar</a></li>
+                    <li class="hover-bordered"><a>Cadastrar</a></li>
+                    <li class="hover-bordered"><a>Gerenciar</a></li>
+                    <li class="hover-bordered"><a>Listar</a></li>
                 </ul>
             </li></li>
         </ul>
