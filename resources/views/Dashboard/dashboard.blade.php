@@ -1,15 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Salão</title>
 </head>
 <body>
-
 <nav class="box-border relative block w-full py-5 leading-10 text-center bg-indigo-600 md:py-6">
     <div class="w-full px-4 mx-auto text-center md:px-4 lg:px-6 max-w-7xl">
         <div class="box-border flex flex-col flex-wrap items-center justify-between text-indigo-900 md:flex-row">
@@ -41,80 +37,49 @@
         </div>
     </div>
 </nav>
-<div>
 
-    <h1 class="text-5xl font-bold text-center mt-4 mb-2">Cadastrar Cliente</h1>
-    <form action="{{url('/clientes/cadastrar')}}" method="post"
-          class="max-w-3xl ml-auto mr-auto mt-8 grid grid-cols-2 gap-y-4 grid-rows-6 ">
-        @csrf
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Nome Completo: </span>
-                <input class="input input-bordered w-1/2" name="nome" type="text">
-            </label>
-        </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Email: </span>
-                <input class="input input-bordered w-1/2" name="email" type="email">
-            </label>
-        </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Senha: </span>
-                <input class="input input-bordered w-1/2" name="senha" type="password">
-            </label>
-        </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Telefone: </span>
-                <input class="input input-bordered w-1/2" type="tel" name="telefone">
-            </label>
-        </div>
-        {{--        #TODO transformar em select--}}
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Cortes: </span>
-                <input class="input input-bordered w-1/2" name="cortes" type="text">
-            </label>
-        </div>
-        {{--        #TODO esse tambem--}}
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Sexo: </span>
-                <input class="input input-bordered w-1/2" name="sexo" type="text">
-            </label>
-        </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Idade: </span>
-                <input class="input input-bordered w-1/2" name="idade" type="number">
-            </label>
-        </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Preferência de Produtos: </span>
-                <input class="input input-bordered w-1/2" name="produtos" type="text">
-            </label>
-        </div>
-        <button type="submit" class="btn btn-primary w-1/2 col-span-2 ml-auto mr-auto ">Enviar</button>
-    </form>
-</div>
-@if($errors->any())
-    <div class="alert alert-error shadow-lg">
-        <div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
-                 viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            @foreach($errors->all() as $error)
-                <span>{{$error}}</span>
-            @endforeach
+<div class="w-full h-full grid grid-cols-3 grid-rows-5">
+    <h1 class="text-3xl font-bold text-center mt-auto mb-auto row-start-1 col-start-2 ">Olá nomeFuncionário</h1>
+    <div class="alert alert-info shadow-lg stats shadow col-start-1 row-start-2 w-full  ml-1 ">
+        <div class="stat">
+            <h2 class="stat-value text-center ">Agendamentos</h2>
+            <h3 class="stat-title text-center">N agendamentos para hoje.</h3>
         </div>
     </div>
-@endif
-
+    <div class="ml-4 h-full alert-info stats shadow-lg stats shadow row-start-2 col-start-2 bg-accent">
+        <div class="stat"><h1 class="stat-value text-center mt-auto mb-auto ">O que deseja fazer?</h1></div>
+    </div>
+    <div class="row-start-3 col-start-2 ml-auto mr-auto">
+        <ul class="menu menu-horizontal bg-base-100 rounded-box p-2">
+            <li tabindex="0">
+                <span class="ml-auto mr-auto">Cliente</span>
+                <ul class="rounded-box bg-base-100 p-2">
+                    <li class="hover-bordered"><a>Cadastrar</a></li>
+                    <li class="hover-bordered"><a>Gerenciar</a></li>
+                    <li class="hover-bordered"><a>Agendar</a></li>
+                </ul>
+            </li>
+            <!-- tabindex will make the parent menu focusable to keep the submenu open if it's focused -->
+            <li tabindex="1">
+                <span class="ml-auto mr-auto">Funcionário</span>
+                <ul class="rounded-box bg-base-100 p-2">
+                    <li class="hover-bordered"><a>Cadastrar</a></li>
+                    <li class="hover-bordered"><a>Gerenciar</a></li>
+                </ul>
+            </li>
+            <li><li tabindex="2">
+                <span class="ml-auto mr-auto">Produtos</span>
+                <ul class="rounded-box bg-base-100 p-2">
+                    <li class="hover-bordered"><a>Cadastrar</a></li>
+                    <li class="hover-bordered"><a>Gerenciar</a></li>
+                    <li class="hover-bordered"><a>Listar</a></li>
+                </ul>
+            </li></li>
+        </ul>
+    </div>
+    <div></div>
+    <div></div>
+</div>
 
 </body>
 </html>

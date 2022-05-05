@@ -19,10 +19,11 @@ Route::get('/', function () {
 
 Route::group(['prefix' => '/clientes'], function () {
     Route::get('/', 'App\Http\Controllers\ClientesController@listarClientes')->name("listarClientes");
-    Route::get('/{id}', 'App\Http\Controllers\ClientesController@listarCliente')->name("listarCliente");
-    Route::post('/', 'App\Http\Controllers\ClientesController@cadastrarCliente')->name("cadastrarCliente");
-    Route::put('/{id}', 'App\Http\Controllers\ClientesController@alterarCliente')->name("alterarCliente");
-    Route::delete('/{id}', 'App\Http\Controllers\ClientesController@deletarCliente')->name("deletarCliente");
+    Route::get('/list/{id}', 'App\Http\Controllers\ClientesController@listarCliente')->name("listarCliente");
+    Route::get('/cadastrar', 'App\Http\Controllers\ClientesController@paginaCadastroCliente')->name("paginaCadastrarCliente");
+    Route::post('/cadastrar', 'App\Http\Controllers\ClientesController@cadastrarCliente')->name("cadastrarCliente");
+    Route::put('/update/{id}', 'App\Http\Controllers\ClientesController@alterarCliente')->name("alterarCliente");
+    Route::delete('/exclude/{id}', 'App\Http\Controllers\ClientesController@deletarCliente')->name("deletarCliente");
 });
 
 Route::group(['prefix' => '/funcionarios'], function () {
@@ -35,3 +36,7 @@ Route::group(['prefix' => '/funcionarios'], function () {
     Route::put('/{id}', 'App\Http\Controllers\FuncionariosController@alterarFuncionario')->name("alterarFuncionario");
     Route::delete('/{id}', 'App\Http\Controllers\FuncionariosController@deletarFuncionario')->name("deletarFuncionario");
 });
+
+Route::get("/dashboard", function (){
+    return view('/Dashboard/dashboard');
+})->name('dashboard');

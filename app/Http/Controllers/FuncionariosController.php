@@ -24,7 +24,7 @@ class FuncionariosController extends Controller
             'email' => 'required|email',
             'senha' => 'required|min:8',
             'telefone' => 'required',
-            'cargo' => 'required',
+            'cortes' => 'required',
             'sexo' => 'required',
             'idade' => 'required',
             'cortes' => 'required',
