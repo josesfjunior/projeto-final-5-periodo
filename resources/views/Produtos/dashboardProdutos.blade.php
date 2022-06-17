@@ -1,15 +1,9 @@
-<!doctype html>
-<html lang="pt-BR">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Produtos</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>Salão</title>
 </head>
-<body>
-
+<body class="w-screen h-screen">
 <nav class="box-border relative block w-full py-5 leading-10 text-center bg-indigo-600 md:py-6">
     <div class="w-full px-4 mx-auto text-center md:px-4 lg:px-6 max-w-7xl">
         <div class="box-border flex flex-col flex-wrap items-center justify-between text-indigo-900 md:flex-row">
@@ -41,67 +35,66 @@
         </div>
     </div>
 </nav>
-<div>
 
-    <h1 class="text-5xl font-bold text-center mt-4 mb-2">Cadastrar Cliente</h1>
-    <form action="{{url('/clientes/cadastrar')}}" method="post"
-          class="max-w-3xl ml-auto mr-auto mt-8 grid grid-cols-2 gap-y-4 grid-rows-6 ">
-        @csrf
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Nome Completo: </span>
-                <input class="input input-bordered w-1/2" name="nome" type="text">
-            </label>
+
+
+<div class="w-full h-full">
+    <div>
+        <div>
+            <div>
+                <h3>Produtos</h3>
+                <div class="w-1/2 ml-auto mr-auto mt-10">
+                    <table class="table table-zebra table-bordered w-full text-center">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Preço</th>
+                            <th>Quantidade</th>
+                            <th>Descrição</th>
+                            <th>Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($produtos as $produto)
+                            <tr>
+                                <td>{{$produto->id}}</td>
+                                <td>{{$produto->nome}}</td>
+                                <td>{{$produto->preco}}</td>
+                                <td>{{$produto->quantidade}}</td>
+                                <td>{{$produto->descricao}}</td>
+                                <td class="grid grid-cols-2">
+                                    <a href="" class="btn btn-primary mr-4">Editar</a>
+                                    <form action="{{route('deletarProduto', ["id" => $produto->id])}}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-error ">Deletar</button>
+                                    </form>
+                                </td>
+                                {{--                                {{route('produtos.edit', $produto->id)}}   action="{{route('produtos.destroy', $produto->id)}}"--}}
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Email: </span>
-                <input class="input input-bordered w-1/2" name="email" type="email">
-            </label>
-        </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Senha: </span>
-                <input class="input input-bordered w-1/2" name="senha" type="password">
-            </label>
-        </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Telefone: </span>
-                <input class="input input-bordered w-1/2" type="tel" name="telefone">
-            </label>
-        </div>
-        {{--        #TODO transformar em select--}}
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Cortes: </span>
-                <input class="input input-bordered w-1/2" name="cortes" type="text">
-            </label>
-        </div>
-        {{--        #TODO esse tambem--}}
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Sexo: </span>
-                <input class="input input-bordered w-1/2" name="sexo" type="text">
-            </label>
-        </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Idade: </span>
-                <input class="input input-bordered w-1/2" name="idade" type="number">
-            </label>
-        </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Preferência de Produtos: </span>
-                <input class="input input-bordered w-1/2" name="produtos" type="text">
-            </label>
-        </div>
-        <button type="submit" class="btn btn-primary w-1/2 col-span-2 ml-auto mr-auto ">Enviar</button>
-    </form>
+    </div>
 </div>
+@if(session('sucesso'))
+    <div class="alert alert-success shadow-lg w-1/4 ml-auto mt-20 mr-4">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                 viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span>{{session('sucesso')}}</span>
+        </div>
+    </div>
+@endif
+
 @if($errors->any())
-    <div class="alert alert-error shadow-lg">
+    <div class="alert alert-error shadow-lg w-1/2 ml-auto mr-auto">
         <div>
             <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
                  viewBox="0 0 24 24">
@@ -115,6 +108,7 @@
     </div>
 @endif
 
-
 </body>
+
+
 </html>

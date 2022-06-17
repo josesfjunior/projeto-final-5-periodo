@@ -1,14 +1,10 @@
-<!doctype html>
-<html lang="pt-BR">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cadastrar Produto</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>Salão</title>
 </head>
-<body>
+
+<body class="w-screen h-screen">
 
 <nav class="box-border relative block w-full py-5 leading-10 text-center bg-indigo-600 md:py-6">
     <div class="w-full px-4 mx-auto text-center md:px-4 lg:px-6 max-w-7xl">
@@ -41,67 +37,38 @@
         </div>
     </div>
 </nav>
-<div>
 
-    <h1 class="text-5xl font-bold text-center mt-4 mb-2">Cadastrar Cliente</h1>
-    <form action="{{url('/clientes/cadastrar')}}" method="post"
-          class="max-w-3xl ml-auto mr-auto mt-8 grid grid-cols-2 gap-y-4 grid-rows-6 ">
-        @csrf
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Nome Completo: </span>
-                <input class="input input-bordered w-1/2" name="nome" type="text">
-            </label>
+
+
+
+<form action="/produtos/cadastrar" method="post" class="w-1/4 ml-auto mr-auto mt-8 text-center">
+    @csrf
+    <label for="nome" >Nome</label>
+    <input type="text" name="nome" id="nome" class="input input-bordered w-full max-w-xs">
+    <label for="preco">Preço</label>
+    <input type="text" name="preco" id="preco" class="input input-bordered w-full max-w-xs">
+    <label for="quantidade">Quantidade</label>
+    <input type="number" name="quantidade" id="quantidade" class="input input-bordered w-full max-w-xs">
+    <label for="descricao">Descrição</label>
+    <input type="text" name="descricao" id="descricao" class="input input-bordered w-full max-w-xs">
+    <button type="submit" class="btn btn-primary mt-4">Cadastrar</button>
+</form>
+
+@if(session('sucesso'))
+    <div class="alert alert-success shadow-lg w-1/4 ml-auto mt-20 mr-4">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                 viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span>{{session('sucesso')}}</span>
         </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Email: </span>
-                <input class="input input-bordered w-1/2" name="email" type="email">
-            </label>
-        </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Senha: </span>
-                <input class="input input-bordered w-1/2" name="senha" type="password">
-            </label>
-        </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Telefone: </span>
-                <input class="input input-bordered w-1/2" type="tel" name="telefone">
-            </label>
-        </div>
-        {{--        #TODO transformar em select--}}
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Cortes: </span>
-                <input class="input input-bordered w-1/2" name="cortes" type="text">
-            </label>
-        </div>
-        {{--        #TODO esse tambem--}}
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Sexo: </span>
-                <input class="input input-bordered w-1/2" name="sexo" type="text">
-            </label>
-        </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Idade: </span>
-                <input class="input input-bordered w-1/2" name="idade" type="number">
-            </label>
-        </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Preferência de Produtos: </span>
-                <input class="input input-bordered w-1/2" name="produtos" type="text">
-            </label>
-        </div>
-        <button type="submit" class="btn btn-primary w-1/2 col-span-2 ml-auto mr-auto ">Enviar</button>
-    </form>
-</div>
+    </div>
+@endif
+
 @if($errors->any())
-    <div class="alert alert-error shadow-lg">
+    <div class="alert alert-error shadow-lg w-1/2 ml-auto mr-auto">
         <div>
             <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
                  viewBox="0 0 24 24">

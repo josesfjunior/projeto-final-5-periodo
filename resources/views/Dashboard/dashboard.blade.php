@@ -6,12 +6,13 @@
     <title>Salão</title>
 </head>
 <body>
+
 <nav class="box-border relative block w-full py-5 leading-10 text-center bg-indigo-600 md:py-6">
     <div class="w-full px-4 mx-auto text-center md:px-4 lg:px-6 max-w-7xl">
         <div class="box-border flex flex-col flex-wrap items-center justify-between text-indigo-900 md:flex-row">
             <div
                 class="relative z-10 flex items-center w-auto px-4 leading-10 lg:flex-grow-0 lg:flex-shrink-0 lg:text-left">
-                <a href="#_"
+                <a href="/"
                    class="box-border inline-block font-sans text-2xl font-bold text-left text-indigo-900 no-underline bg-transparent cursor-pointer focus:no-underline">
                     <svg class="w-auto h-6 text-gray-200 fill-current" viewBox="0 0 125 100"
                          xmlns="http://www.w3.org/2000/svg">
@@ -22,10 +23,10 @@
             </div>
             <nav
                 class="flex flex-wrap items-center my-6 space-x-4 text-xs font-semibold tracking-wide uppercase md:ml-20 lg:ml-32 md:my-0 sm:space-x-6">
-                <a href="#_" class="text-white hover:text-white">Home</a>
-                <a href="#_" class="text-indigo-100 hover:text-white">Features</a>
-                <a href="#_" class="text-indigo-100 hover:text-white">Pricing</a>
-                <a href="#_" class="text-indigo-100 hover:text-white">Blog</a>
+                <a href="/" class="text-white hover:text-white">Home</a>
+                <a href="/clientes/cadastrar" class="text-indigo-100 hover:text-white">Clientes</a>
+                <a href="/produtos" class="text-indigo-100 hover:text-white">produtos</a>
+                <a href="/about" class="text-indigo-100 hover:text-white">about</a>
             </nav>
             <div
                 class="relative px-4 mt-2 text-xs font-semibold leading-10 uppercase md:mt-0 md:flex-grow-0 md:flex-shrink-0 md:text-right lg:flex-grow-0 lg:flex-shrink-0">
@@ -67,19 +68,49 @@
                     <li class="hover-bordered"><a>Gerenciar</a></li>
                 </ul>
             </li>
-            <li><li tabindex="2">
+            <li>
+            <li tabindex="2">
                 <span class="ml-auto mr-auto">Produtos</span>
                 <ul class="rounded-box bg-base-100 p-2">
-                    <li class="hover-bordered"><a>Cadastrar</a></li>
-                    <li class="hover-bordered"><a>Gerenciar</a></li>
-                    <li class="hover-bordered"><a>Listar</a></li>
+                    <li class="hover-bordered"><a href="/produtos/cadastro">Cadastrar</a></li>
+                    <li class="hover-bordered"><a href="/produtos/dashboard">Gerenciar</a></li>
+                    <li class="hover-bordered"><a href="/produtos">Listar</a></li>
                 </ul>
-            </li></li>
+            </li>
+            </li>
         </ul>
     </div>
     <div></div>
     <div></div>
 </div>
+
+@if(session('sucesso'))
+    <div class="alert alert-success shadow-lg w-1/4 ml-auto mt-20 mr-4">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                 viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span>{{session('sucesso')}}</span>
+        </div>
+    </div>
+@endif
+
+@if($errors->any())
+    <div class="alert alert-error shadow-lg w-1/2 ml-auto mr-auto">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                 viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            @foreach($errors->all() as $error)
+                <span>{{$error}}</span>
+            @endforeach
+        </div>
+    </div>
+@endif
 
 </body>
 </html>

@@ -9,7 +9,6 @@
     <title>Salão</title>
 </head>
 <body>
-
 <nav class="box-border relative block w-full py-5 leading-10 text-center bg-indigo-600 md:py-6">
     <div class="w-full px-4 mx-auto text-center md:px-4 lg:px-6 max-w-7xl">
         <div class="box-border flex flex-col flex-wrap items-center justify-between text-indigo-900 md:flex-row">
@@ -41,80 +40,20 @@
         </div>
     </div>
 </nav>
-<div>
-
-    <h1 class="text-5xl font-bold text-center mt-4 mb-2">Cadastrar Cliente</h1>
-    <form action="{{url('/clientes/cadastrar')}}" method="post"
-          class="max-w-3xl ml-auto mr-auto mt-8 grid grid-cols-2 gap-y-4 grid-rows-6 ">
-        @csrf
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Nome Completo: </span>
-                <input class="input input-bordered w-1/2" name="nome" type="text">
-            </label>
+<div class="flex flex-wrap mt-8 ml-8">
+    @foreach($produtos as $produto)
+        <div class="card w-96 bg-base-100 shadow-xl ml-5 mt-5 text-center">
+            <div class="card-body">
+                <h2 class="card-title ">Produto:  {{$produto->nome}}</h2>
+                <p>Descrição: {{$produto->descricao}}</p>
+                <p>Preço: {{$produto->preco = number_format($produto->preco, 2, ',', '.')}} R$</p>
+                <p>Quantidade: {{$produto->quantidade}}</p>
+                <div class="card-actions justify-end">
+                    <button class="btn btn-primary">Adicionar ao carrinho</button>
+                </div>
+            </div>
         </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Email: </span>
-                <input class="input input-bordered w-1/2" name="email" type="email">
-            </label>
-        </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Senha: </span>
-                <input class="input input-bordered w-1/2" name="senha" type="password">
-            </label>
-        </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Telefone: </span>
-                <input class="input input-bordered w-1/2" type="tel" name="telefone">
-            </label>
-        </div>
-        {{--        #TODO transformar em select--}}
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Cortes: </span>
-                <input class="input input-bordered w-1/2" name="cortes" type="text">
-            </label>
-        </div>
-        {{--        #TODO esse tambem--}}
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Sexo: </span>
-                <input class="input input-bordered w-1/2" name="sexo" type="text">
-            </label>
-        </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Idade: </span>
-                <input class="input input-bordered w-1/2" name="idade" type="number">
-            </label>
-        </div>
-        <div class="form-control">
-            <label class="input-group">
-                <span class="w-1/2">Preferência de Produtos: </span>
-                <input class="input input-bordered w-1/2" name="produtos" type="text">
-            </label>
-        </div>
-        <button type="submit" class="btn btn-primary w-1/2 col-span-2 ml-auto mr-auto ">Enviar</button>
-    </form>
+    @endforeach
 </div>
-@if($errors->any())
-    <div class="alert alert-error shadow-lg">
-        <div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
-                 viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            @foreach($errors->all() as $error)
-                <span>{{$error}}</span>
-            @endforeach
-        </div>
-    </div>
-@endif
-
-
 </body>
 </html>

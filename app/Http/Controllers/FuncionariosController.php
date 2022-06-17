@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Funcionario;
 use Illuminate\Http\Request;
 use SebastianBergmann\Environment\Console;
 
@@ -24,12 +25,14 @@ class FuncionariosController extends Controller
             'email' => 'required|email',
             'senha' => 'required|min:8',
             'telefone' => 'required',
-            'cortes' => 'required',
+            'cargo' => 'required',
             'sexo' => 'required',
             'idade' => 'required',
             'cortes' => 'required',
         ]);
 
+        $params = $request->except('_token');
+        $funcionario = Funcionario::create($params);
         return redirect()->route("paginaLogin")->with('sucesso', 'Cadastro realizado com sucesso!');
 
     }
@@ -38,12 +41,15 @@ class FuncionariosController extends Controller
             'email' => 'required|email',
             'senha' => 'required|min:8',
         ]);
+        $funcionario = Funcionario::where('email', $request->email)->where('senha', $request->senha)->first();
 
-        //chamarlistarFuncionario(email)
-        //Retorno disso valida
-        //Autentica
+        if ($funcionario != null) {
+            $request->session()->put('autenticado', 'ok');
+            return redirect()->route("dashboard")->with('sucesso', 'Login realizado com sucesso!');
+        } else {
+            return redirect()->route("paginaLogin")->with('error', 'Login ou senha incorretos!');
+        }
 
-        return redirect()->route("dashboard");
     }
 
     public function alterarFuncionario($id)
