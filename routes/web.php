@@ -38,5 +38,23 @@ Route::group(['prefix' => '/funcionarios'], function () {
 });
 
 Route::get("/dashboard", function (){
-    return view('/Dashboard/dashboard');
+    if(session()->get('autenticado') == 'ok'){
+        return view('Dashboard/dashboard');
+    } else {
+        return redirect()->route("paginaLogin");
+    }
 })->name('dashboard');
+
+Route::group(['prefix' => '/produtos'], function (){
+    Route::get('/', 'App\Http\Controllers\ProdutosController@paginaProdutos');
+       Route::get('/cadastro', 'App\Http\Controllers\ProdutosController@paginaCadastroProduto')->name("paginaCadastroProduto");
+       Route::get('/dashboard', 'App\Http\Controllers\ProdutosController@dashboardProdutos')->name("dashboardProdutos");
+       Route::post('/cadastrar', 'App\Http\Controllers\ProdutosController@cadastrarProduto');
+       Route::post('/deletar', 'App\Http\Controllers\ProdutosController@deletarProduto')->name("deletarProduto");
+
+});
+
+
+Route::get('/about', function () {
+    return view('about');
+});

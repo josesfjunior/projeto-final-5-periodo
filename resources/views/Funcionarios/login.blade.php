@@ -15,7 +15,7 @@
         <div class="box-border flex flex-col flex-wrap items-center justify-between text-indigo-900 md:flex-row">
             <div
                 class="relative z-10 flex items-center w-auto px-4 leading-10 lg:flex-grow-0 lg:flex-shrink-0 lg:text-left">
-                <a href="#_"
+                <a href="/"
                    class="box-border inline-block font-sans text-2xl font-bold text-left text-indigo-900 no-underline bg-transparent cursor-pointer focus:no-underline">
                     <svg class="w-auto h-6 text-gray-200 fill-current" viewBox="0 0 125 100"
                          xmlns="http://www.w3.org/2000/svg">
@@ -26,10 +26,10 @@
             </div>
             <nav
                 class="flex flex-wrap items-center my-6 space-x-4 text-xs font-semibold tracking-wide uppercase md:ml-20 lg:ml-32 md:my-0 sm:space-x-6">
-                <a href="#_" class="text-white hover:text-white">Home</a>
-                <a href="#_" class="text-indigo-100 hover:text-white">Features</a>
-                <a href="#_" class="text-indigo-100 hover:text-white">Pricing</a>
-                <a href="#_" class="text-indigo-100 hover:text-white">Blog</a>
+                <a href="/" class="text-white hover:text-white">Home</a>
+                <a href="/clientes/cadastrar" class="text-indigo-100 hover:text-white">Clientes</a>
+                <a href="/produtos" class="text-indigo-100 hover:text-white">produtos</a>
+                <a href="/about" class="text-indigo-100 hover:text-white">about</a>
             </nav>
             <div
                 class="relative px-4 mt-2 text-xs font-semibold leading-10 uppercase md:mt-0 md:flex-grow-0 md:flex-shrink-0 md:text-right lg:flex-grow-0 lg:flex-shrink-0">
@@ -58,6 +58,7 @@
             </label>
         </div>
         <button type="submit" class="btn btn-primary w-1/2 ml-auto mr-auto ">Enviar</button>
+        <a href="/funcionarios/cadastrar">Se cadastre aqui</a>
     </form>
 </div>
 @if(session('sucesso'))
@@ -69,6 +70,21 @@
                       d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
             <span>{{session('sucesso')}}</span>
+        </div>
+    </div>
+@endif
+
+@if($errors->any())
+    <div class="alert alert-error shadow-lg w-1/2 ml-auto mr-auto">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                 viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            @foreach($errors->all() as $error)
+                <span>{{$error}}</span>
+            @endforeach
         </div>
     </div>
 @endif
